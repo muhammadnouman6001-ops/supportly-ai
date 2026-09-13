@@ -22,9 +22,9 @@ export default function InboxPage() {
 
       <Card className="overflow-hidden rounded-2xl shadow-none">
         <CardContent className="p-0">
-          <div className="grid min-h-[620px] lg:grid-cols-[300px_minmax(0,1fr)_320px]">
+          <div className="grid min-h-[620px] md:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1fr)_320px]">
             {/* Conversation list */}
-            <aside className="border-r">
+            <aside className="border-b md:border-b-0 md:border-r">
               <div className="border-b p-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -53,7 +53,7 @@ export default function InboxPage() {
             </section>
 
             {/* Customer context */}
-            <aside className="hidden p-5 lg:block">
+            <aside className="hidden p-5 xl:block">
               <p className="text-sm font-medium">
                 Customer
               </p>

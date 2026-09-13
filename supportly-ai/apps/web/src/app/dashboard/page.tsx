@@ -147,13 +147,15 @@ export default function DashboardPage() {
         </CardHeader>
 
         <CardContent>
-          <div className="overflow-hidden rounded-xl border">
+          <div className="overflow-x-auto rounded-xl border">
+          <div className="min-w-[720px]">
             {/* Table header */}
             <div className="grid grid-cols-[1.4fr_1fr_1fr_120px] border-b bg-muted/40 px-4 py-3 text-xs font-medium text-muted-foreground">
               <span>Customer</span>
               <span>Topic</span>
               <span>Status</span>
               <span>Confidence</span>
+            </div>
             </div>
 
             {/* Table rows */}
