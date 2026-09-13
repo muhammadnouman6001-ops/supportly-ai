@@ -15,10 +15,33 @@ import {
 
 import { KpiCard } from "@/components/dashboard/kpi-card";
 import { PageHeader } from "@/components/dashboard/page-header";
+import { StatusBadge } from "@/components/dashboard/status-badge";
+
+const conversations = [
+  {
+    customer: "Alex Morgan",
+    topic: "Refund policy",
+    status: "ai" as const,
+    confidence: "94%",
+  },
+  {
+    customer: "Sarah Lee",
+    topic: "Account access",
+    status: "resolved" as const,
+    confidence: "91%",
+  },
+  {
+    customer: "James Carter",
+    topic: "Pricing",
+    status: "human" as const,
+    confidence: "54%",
+  },
+];
 
 export default function DashboardPage() {
   return (
     <div className="space-y-8">
+      {/* Page header */}
       <PageHeader
         title="Overview"
         description="Monitor your AI support performance, conversations and knowledge health."
@@ -30,7 +53,7 @@ export default function DashboardPage() {
         }
       />
 
-      {/* KPIs */}
+      {/* KPI cards */}
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard
           title="Conversations"
@@ -61,8 +84,9 @@ export default function DashboardPage() {
         />
       </section>
 
-      {/* Main content */}
+      {/* Main analytics section */}
       <section className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)]">
+        {/* Conversation activity */}
         <Card className="min-h-[360px] rounded-2xl shadow-none">
           <CardHeader>
             <CardTitle className="text-base">
@@ -79,6 +103,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
+        {/* AI performance */}
         <Card className="min-h-[360px] rounded-2xl shadow-none">
           <CardHeader>
             <CardTitle className="text-base">
@@ -113,13 +138,17 @@ export default function DashboardPage() {
             Recent conversations
           </CardTitle>
 
-          <Button variant="ghost" size="sm">
+          <Button
+            variant="ghost"
+            size="sm"
+          >
             View all
           </Button>
         </CardHeader>
 
         <CardContent>
           <div className="overflow-hidden rounded-xl border">
+            {/* Table header */}
             <div className="grid grid-cols-[1.4fr_1fr_1fr_120px] border-b bg-muted/40 px-4 py-3 text-xs font-medium text-muted-foreground">
               <span>Customer</span>
               <span>Topic</span>
@@ -127,29 +156,26 @@ export default function DashboardPage() {
               <span>Confidence</span>
             </div>
 
-            {[
-              ["Alex Morgan", "Refund policy", "AI Handling", "94%"],
-              ["Sarah Lee", "Account access", "Resolved", "91%"],
-              ["James Carter", "Pricing", "Human", "54%"],
-            ].map(([customer, topic, status, confidence]) => (
+            {/* Table rows */}
+            {conversations.map((conversation) => (
               <div
-                key={customer}
+                key={conversation.customer}
                 className="grid grid-cols-[1.4fr_1fr_1fr_120px] items-center border-b px-4 py-4 text-sm last:border-b-0"
               >
                 <span className="font-medium">
-                  {customer}
+                  {conversation.customer}
                 </span>
 
                 <span className="text-muted-foreground">
-                  {topic}
+                  {conversation.topic}
                 </span>
 
                 <span>
-                  {status}
+                  <StatusBadge status={conversation.status} />
                 </span>
 
                 <span className="text-muted-foreground">
-                  {confidence}
+                  {conversation.confidence}
                 </span>
               </div>
             ))}
