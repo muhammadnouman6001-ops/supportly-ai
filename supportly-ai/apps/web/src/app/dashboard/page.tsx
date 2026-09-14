@@ -1,3 +1,4 @@
+import { BackendStatus } from "@/components/dashboard/backend-status";
 import {
   Bot,
   Clock3,
@@ -43,15 +44,19 @@ export default function DashboardPage() {
     <div className="space-y-8">
       {/* Page header */}
       <PageHeader
-        title="Overview"
-        description="Monitor your AI support performance, conversations and knowledge health."
-        action={
-          <Button className="rounded-xl">
-            <Bot className="mr-2 size-4" />
-            Create agent
-          </Button>
-        }
-      />
+  title="Overview"
+  description="Monitor your AI support performance, conversations and knowledge health."
+  action={
+    <div className="flex flex-wrap items-center gap-2">
+      <BackendStatus />
+
+      <Button className="rounded-xl">
+        <Bot className="mr-2 size-4" />
+        Create agent
+      </Button>
+    </div>
+  }
+/>
 
       {/* KPI cards */}
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
